@@ -157,6 +157,51 @@ Note that every sprite, script, and block shares the same block utility object. 
 
 Here are some common copy-and-pasteable code snippets that can be used:
 
+Basic Block:
+```js
+{
+ // Basic Configuration - Every block REQUIRES these
+ opcode: 'idofblock', // The name of the block when scripting it. Try to avoid spaces
+ text: 'Block Name', // The appearance of the block. Arguments are formatted [like this]
+ blockType: Scratch.BlockType.BOOLEAN // Type of block (command, reporter, boolean, or hat)
+
+ // Advanced Configuration - Most blocks won't need these
+ isTerminal: false, // Terminal blocks can't be attached to (i.e delete this clone, stop all scripts)
+ filter: [Scratch.TargetType.SPRITE, Scratch.TargetType.STAGE], // Allows blocks to only appear in the backdrop or a sprite
+ hideFromPalette: false, // Removes the block from the sidebar so scripts don't crash if they use that block
+ disableMoniter: false, // Remove the checkbox from reporter blocks
+
+ // Arguments
+ arguments: {} // The inputs of the block (arguments) would go here
+}
+```
+
+Basic Argument:
+```js
+argument_name: {
+ type: Scratch.ArgumentType.NUMBER, // The type of argument (string, number, boolean, angle, color, matrix, note, or image)
+ defaultValue: '10' // The default value of an argument
+}
+```
+
+Menu Argument:
+```js
+menu_argument_name: {
+ type: Scratch.ArgumentType.STRING, // The argument MUST be a string
+ menu: 'MENU_NAME' // Name of the menu
+}
+```
+
+Basic Menu:
+```js
+menus: {
+ MENU_NAME: {
+  acceptReporters: false, // Allows reporters to be placed in the menu spot
+  items: ['item 1','item 2'] // The values that the user can choose from
+ }
+}
+```
+
 If the extension MUST be run unsandboxed, add this around the start:
 
 ```js
